@@ -4,8 +4,6 @@ import { CopilotKit } from "@copilotkit/react-core";
 import "./globals.css";
 import "@copilotkit/react-ui/styles.css";
 
-const MASTRA_URL = process.env.MASTRA_URL || "http://localhost:4111";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

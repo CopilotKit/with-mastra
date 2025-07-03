@@ -31,7 +31,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build || echo "No build script in root"
+        run: npm run build
       - name: Start and check main app (Linux/macOS)
         if: runner.os != 'Windows'
         run: |
