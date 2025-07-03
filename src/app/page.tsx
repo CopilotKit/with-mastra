@@ -40,7 +40,7 @@ function YourMainContent({ themeColor }: { themeColor: string }) {
   useCopilotAction({
     name: "*",
     render: (props: CatchAllActionRenderProps) => {
-      const InfoBox = ({ title, content }: { title: string; content: any }) => (
+      const InfoBox = ({ title, content }: { title: string; content: unknown }) => (
         <div className="bg-black/30 p-3 rounded-xl">
           <h2 className="text-white text-sm mb-1">{title}</h2>
           <pre className="text-white text-sm overflow-auto max-h-32 font-mono">
