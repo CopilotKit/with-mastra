@@ -57,8 +57,6 @@ This will start both the UI and agent servers concurrently.
 The following scripts can also be run using your preferred package manager:
 - `dev` - Starts both UI and agent servers in development mode
 - `dev:debug` - Starts development servers with debug logging enabled
-- `dev:ui` - Starts only the UI server
-- `dev:agent` - Starts only the Mastra agent server
 - `build` - Builds the application for production
 - `start` - Starts the production server
 - `lint` - Runs ESLint for code linting

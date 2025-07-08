@@ -1,10 +1,9 @@
 import { Mastra } from "@mastra/core/mastra";
 import { LibSQLStore } from "@mastra/libsql";
 import { weatherAgent } from "./agents";
-import { createLogger, LogLevel } from "@mastra/core/logger";
+import { ConsoleLogger, LogLevel } from "@mastra/core/logger";
 
 const LOG_LEVEL = process.env.LOG_LEVEL as LogLevel || "info";
-const ENV = process.env.NODE_ENV || "development";
 
 export const mastra = new Mastra({
   agents: { 
@@ -13,15 +12,7 @@ export const mastra = new Mastra({
   storage: new LibSQLStore({
     url: ":memory:"
   }),
-  logger: createLogger({
+  logger: new ConsoleLogger({
     level: LOG_LEVEL,
   }),
-  server: {
-    // Disable CORS for development
-    cors: ENV === "development" ? {
-      origin: "*",
-      allowMethods: ["*"],
-      allowHeaders: ["*"],
-    } : undefined,
-  },
 });
