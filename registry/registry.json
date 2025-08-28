@@ -1,0 +1,107 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "copilotkit-mastra",
+  "homepage": "https://github.com/copilotkit/copilotkit",
+  "items": [
+
+    {
+      "name": "nextjs-app-router",
+      "type": "registry:block",
+      "title": "CopilotKit + Mastra (Next.js App)",
+      "description": "Complete Next.js application with CopilotKit and Mastra integration. Includes App Router setup, API routes, weather agent, frontend actions, shared state, and generative UI examples. Requires Next.js with App Router.",
+      "dependencies": [
+        "@copilotkit/react-core",
+        "@copilotkit/react-ui", 
+        "@copilotkit/runtime"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/weather-agent.json"
+      ],
+      "files": [
+        {
+          "path": "src/app/page.tsx",
+          "type": "registry:page",
+          "target": "src/app/copilotkit/page.tsx"
+        },
+        {
+          "path": "src/app/layout.tsx", 
+          "type": "registry:page",
+          "target": "src/app/copilotkit/layout.tsx"
+        },
+        {
+          "path": "src/app/api/copilotkit/route.ts",
+          "type": "registry:file",
+          "target": "src/app/api/copilotkit/route.ts"
+        }
+      ]
+    },
+
+    {
+      "name": "nextjs-pages-router",
+      "type": "registry:block",
+      "title": "CopilotKit + Mastra (Next.js Pages Router)",
+      "description": "Complete Next.js application with CopilotKit and Mastra integration for the Pages Router. Includes pages-based routing, API routes under pages/api, weather agent, frontend actions, shared state, and generative UI examples.",
+      "dependencies": [
+        "@copilotkit/react-core",
+        "@copilotkit/react-ui", 
+        "@copilotkit/runtime"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/weather-agent.json"
+      ],
+      "files": [
+        {
+          "path": "src/app/page.tsx",
+          "type": "registry:page",
+          "target": "src/pages/copilotkit/index.tsx"
+        },
+        {
+          "path": "src/app/layout.tsx", 
+          "type": "registry:page",
+          "target": "src/pages/copilotkit/_app.tsx"
+        },
+        {
+          "path": "src/app/api/copilotkit/route.ts",
+          "type": "registry:file",
+          "target": "src/pages/api/copilotkit.ts"
+        }
+      ]
+    },
+
+    {
+      "name": "weather-agent",
+      "type": "registry:lib",
+      "title": "Mastra Weather Agent",
+      "description": "Framework-agnostic Mastra setup with weather agent and tools. Works with any React application - Vite, Create React App, Next.js, etc.",
+      "dependencies": [
+        "@mastra/core",
+        "@mastra/libsql",
+        "@mastra/memory",
+        "@ag-ui/mastra",
+        "@ai-sdk/openai",
+        "@libsql/client",
+        "@mastra/client-js",
+        "libsql",
+        "zod"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/mastra/index.ts",
+          "type": "registry:lib",
+          "target": "src/mastra/index.ts"
+        },
+        {
+          "path": "src/mastra/agents/index.ts",
+          "type": "registry:lib",
+          "target": "src/mastra/agents/index.ts"
+        },
+        {
+          "path": "src/mastra/tools/index.ts",
+          "type": "registry:lib",
+          "target": "src/mastra/tools/index.ts"
+        }
+      ]
+    }
+  ]
+}

@@ -47,3 +47,7 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 bun.lockb
+
+registry
+!registry/registry.json
+!registry/README.md
