@@ -11,7 +11,7 @@ import { useState } from "react";
 export default function CopilotKitPage() {
   const [themeColor, setThemeColor] = useState("#6366f1");
 
-  // 🪁 Frontend Actions: https://docs.copilotkit.ai/pydantic-ai/frontend-actions
+  // 🪁 Frontend Actions: https://docs.copilotkit.ai/mastra/frontend-actions
   useCopilotAction({
     name: "setThemeColor",
     parameters: [
@@ -74,7 +74,7 @@ export default function CopilotKitPage() {
 }
 
 function YourMainContent({ themeColor }: { themeColor: string }) {
-  // 🪁 Shared State: https://docs.copilotkit.ai/pydantic-ai/shared-state
+  // 🪁 Shared State: https://docs.copilotkit.ai/mastra/shared-state/in-app-agent-read
   const { state, setState } = useCoAgent<AgentState>({
     name: "weatherAgent",
     initialState: {
@@ -84,7 +84,7 @@ function YourMainContent({ themeColor }: { themeColor: string }) {
     },
   });
 
-  //🪁 Generative UI: https://docs.copilotkit.ai/pydantic-ai/generative-ui
+  //🪁 Generative UI: https://docs.copilotkit.ai/mastra/generative-ui/tool-based
   useCopilotAction(
     {
       name: "weatherTool",
@@ -98,7 +98,7 @@ function YourMainContent({ themeColor }: { themeColor: string }) {
     [themeColor],
   );
 
-  // 🪁 Human In the Loop: https://docs.copilotkit.ai/pydantic-ai/human-in-the-loop
+  // 🪁 Human In the Loop: https://docs.copilotkit.ai/mastra/human-in-the-loop
   useCopilotAction(
     {
       name: "go_to_moon",
