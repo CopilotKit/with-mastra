@@ -10,6 +10,7 @@ export const AgentState = z.object({
 });
 
 export const weatherAgent = new Agent({
+  id: "weather-agent",
   name: "Weather Agent",
   tools: { weatherTool },
   model: openai("gpt-4o"),
