@@ -10,12 +10,16 @@ export const AgentState = z.object({
 });
 
 export const weatherAgent = new Agent({
+  id: "weather-agent",
   name: "Weather Agent",
   tools: { weatherTool },
   model: openai("gpt-4o"),
   instructions: "You are a helpful assistant.",
   memory: new Memory({
-    storage: new LibSQLStore({ url: "file::memory:" }),
+    storage: new LibSQLStore({
+      id: "weather-agent-memory",
+      url: "file::memory:",
+    }),
     options: {
       workingMemory: {
         enabled: true,
