@@ -1,0 +1,69 @@
+# Dockerfile for MCP Server
+FROM node:22-alpine AS base
+
+# Install dependencies
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Copy package files
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY apps/mcp/package.json ./apps/mcp/
+COPY turbo.json ./
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile
+
+# Build the MCP app
+FROM base AS builder
+WORKDIR /app
+
+# Copy dependencies
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/apps/mcp/node_modules ./apps/mcp/node_modules
+
+# Copy source code
+COPY apps/mcp ./apps/mcp
+COPY package.json pnpm-workspace.yaml turbo.json ./
+
+# Enable pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Build the MCP app
+RUN pnpm --filter @repo/mcp build
+
+# Production image
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 mcpuser
+
+# Install tsx globally using npm
+RUN npm install -g tsx
+
+# Copy built application and dependencies
+COPY --from=builder /app/apps/mcp/dist ./apps/mcp/dist
+COPY --from=builder /app/apps/mcp/server.ts ./apps/mcp/
+COPY --from=builder /app/apps/mcp/server-utils.ts ./apps/mcp/
+COPY --from=builder /app/apps/mcp/package.json ./apps/mcp/
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/apps/mcp/node_modules ./apps/mcp/node_modules
+
+RUN chown -R mcpuser:nodejs /app
+
+USER mcpuser
+
+WORKDIR /app/apps/mcp
+
+EXPOSE 3108
+
+ENV PORT=3108
+
+CMD ["tsx", "server.ts"]

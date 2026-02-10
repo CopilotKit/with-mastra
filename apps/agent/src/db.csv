@@ -1,0 +1,16 @@
+date,category,subcategory,amount,type
+2026-01-01,Revenue,Subscriptions,45000,income
+2026-01-01,Revenue,One-time Sales,12000,income
+2026-01-01,Expenses,Salaries,30000,expense
+2026-01-01,Expenses,Infrastructure,5000,expense
+2026-01-01,Expenses,Marketing,8000,expense
+2026-02-01,Revenue,Subscriptions,48000,income
+2026-02-01,Revenue,One-time Sales,15000,income
+2026-02-01,Expenses,Salaries,30000,expense
+2026-02-01,Expenses,Infrastructure,5500,expense
+2026-02-01,Expenses,Marketing,10000,expense
+2026-03-01,Revenue,Subscriptions,52000,income
+2026-03-01,Revenue,One-time Sales,18000,income
+2026-03-01,Expenses,Salaries,32000,expense
+2026-03-01,Expenses,Infrastructure,6000,expense
+2026-03-01,Expenses,Marketing,12000,expense

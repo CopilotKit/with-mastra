@@ -1,0 +1,1 @@
+export { mastra } from "../index";
